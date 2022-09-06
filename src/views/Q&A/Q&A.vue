@@ -1,7 +1,7 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
     <div>
-        <h1>资讯</h1>
+        <h1>问答</h1>
     </div>
 </template>
 

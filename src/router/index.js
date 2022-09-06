@@ -2,9 +2,10 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 import Home from 'views/Home/Home.vue'
-import videoi from 'views/LookingRoom/videoi.vue'
-import RealTimeinfo from 'views/realtimeinfo/realtimeinfo.vue'
+import videoi from 'views/videoi/videoi.vue'
+import wenda from 'views/Q&A/Q&A.vue'
 import My from 'views/my/my.vue'
+import login from 'views/my/login'
 import Layout from 'views/Layout/Layout.vue'
 import four from 'views/404/404.vue'
 
@@ -21,25 +22,25 @@ const routes = [
         children: [
             {
                 path: '/Layout/Home',
-                component: Home,
-                meta: { title: '首页' }
+                component: Home
             },
             {
                 path: '/Layout/videoi',
-                component: videoi,
-                meta: { title: '找房' }
+                component: videoi
             },
             {
-                path: '/Layout/RealTimeinfo',
-                component: RealTimeinfo,
-                meta: { title: '资讯' }
+                path: '/Layout/wenda',
+                component: wenda
             },
             {
                 path: '/Layout/My',
-                component: My,
-                meta: { title: '我的' }
+                component: My
             }
         ]
+    },
+    {
+        path: '/login',
+        component: login
     },
     {
         path: '*',
