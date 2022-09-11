@@ -30,3 +30,13 @@ export const Getcodes = (mobile) => {
         url: `/v1_0/sms/codes/${mobile}`
     })
 }
+
+// 获取用户自己的信息
+export const GetUsermsg = () => {
+    return request({
+        url: '/v1_0/user'
+        // headers: {
+        //     Authorization: `Bearer ${store.state.tokenObj.token}`
+        // }
+    })
+}

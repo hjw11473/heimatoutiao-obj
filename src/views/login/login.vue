@@ -4,8 +4,10 @@
         <!-- <h1>登录</h1> -->
         <van-nav-bar
             title="登录"
+            left-text="返回"
             left-arrow
             style="background-color: #1989fa"
+            @click-left="$router.push('/my')"
         />
         <van-form @submit="onSubmit" id="from" ref="from">
             <van-cell-group inset>
@@ -93,17 +95,14 @@ export default {
         },
         // 登录按钮
         async Getlogin() {
-            this.$toast.loading({
-                message: '加载中...',
-                forbidClick: true,
-                duration: 0
-            })
+            this.loading()
             try {
                 const { data } = await loginAPI(this.mobile, this.code)
                 console.log(data)
-                this.SET_TOKE(data, data)
+                this.SET_TOKE(data.data)
                 // 成功后跳转路由
                 this.$router.push('/my')
+                // this.$store.commit('SET_TOKE', {})
                 this.$toast.success('登录成功')
             } catch (err) {
                 if (err.response && err.response.status === 400) {

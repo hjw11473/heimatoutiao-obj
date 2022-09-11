@@ -1,19 +1,39 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import createPersistedState from 'vuex-persistedstate'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
+    plugins: [
+        createPersistedState({
+            key: 'toutiao',
+            storage: window.sessionStorage,
+            reducer({ tokenObj }) {
+                // const { tokenObj } = state
+                return { tokenObj }
+            }
+        })
+    ],
     state: {
-        tokenObj: {}
+        tokenObj: {},
+        a: 1
+        // tokenObj: JSON.parse(window.localStorage.getItem('toutiao')) || {}
     },
     mutations: {
         SET_TOKE(state, token) {
             state.tokenObj = token
-            console.log(state, token, state.tokenObj)
+            // console.log(state, token, state.tokenObj)
+            // window.localStorage.setItem('toutiao', JSON.stringify(token))
+        }
+    },
+    getters: {
+        isLogin({ tokenObj }) {
+            return !!tokenObj.token
         }
     }
 })
+
 // export default new Vuex.Store({
 //     // state用来存放数据  使用的时候this.$store.state.count
 //     // 查看数据的时候为this.$store
