@@ -8,7 +8,6 @@
                 <van-row></van-row>
 
                 <van-row>
-                    <van-col span="1"></van-col>
                     <van-col span="13">
                         <van-row
                             type="flex"
@@ -21,7 +20,6 @@
                                 height="1.5rem"
                                 :src="userinfo.photo"
                             />
-                            <van-col span="1"></van-col>
                             <span class="mobile">{{ userinfo.name }}</span>
                         </van-row>
                     </van-col>

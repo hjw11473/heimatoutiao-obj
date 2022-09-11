@@ -66,7 +66,7 @@
 
 <script>
 import { MobileRules, CodeRule } from '@/views/login/rule'
-import { loginAPI, GetcodesAPI } from '@/api/index'
+import { login, Getcodes } from '@/api'
 import { mapMutations } from 'vuex'
 export default {
     data() {
@@ -97,7 +97,7 @@ export default {
         async Getlogin() {
             this.loading()
             try {
-                const { data } = await loginAPI(this.mobile, this.code)
+                const { data } = await login(this.mobile, this.code)
                 console.log(data)
                 this.SET_TOKE(data.data)
                 // 成功后跳转路由
@@ -123,7 +123,7 @@ export default {
             await this.$refs.from.validate('mobile')
             this.loading()
             try {
-                await GetcodesAPI(this.mobile)
+                await Getcodes(this.mobile)
                 // 显示倒计时时间
                 this.isShowbtn = false
                 this.$toast.success('发送验证码成功')
