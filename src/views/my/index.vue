@@ -46,22 +46,22 @@
 
                 <van-row>
                     <van-grid class="grid" :border="false">
-                        <van-grid-item text="文字">
+                        <van-grid-item text="头条">
                             <template #icon>
                                 {{ userinfo.art_count }}
                             </template>
                         </van-grid-item>
-                        <van-grid-item text="文字">
+                        <van-grid-item text="粉丝">
                             <template #icon>
                                 {{ userinfo.fans_count }}
                             </template>
                         </van-grid-item>
-                        <van-grid-item text="文字">
+                        <van-grid-item text="关注">
                             <template #icon>
                                 {{ userinfo.follow_count }}
                             </template>
                         </van-grid-item>
-                        <van-grid-item text="文字">
+                        <van-grid-item text="获赞">
                             <template #icon>
                                 {{ userinfo.like_count }}
                             </template>
@@ -126,11 +126,9 @@ export default {
     created() {
         this.GetUsermsg()
     },
-    computed: {
-        ...mapGetters(['isLogin'])
-    },
     methods: {
         // 点击提示
+
         async fanhui() {
             await this.$dialog.confirm({
                 title: '提示',
@@ -156,7 +154,7 @@ export default {
             }
         },
         // 编辑用户个人信息
-        EditMsg() {}
+        // EditMsg() {}
         // fanhui() {
         //     this.$dialog
         //         .confirm({
@@ -171,7 +169,11 @@ export default {
         //         .catch(() => {
         //             // on cancel
         //         })
-        // }
+        // },
+        EditMsg() {}
+    },
+    computed: {
+        ...mapGetters(['isLogin'])
     }
 }
 </script>

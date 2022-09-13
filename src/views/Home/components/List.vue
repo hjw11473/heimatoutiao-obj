@@ -33,6 +33,7 @@
 </template>
 
 <script>
+import dayjs from '@/utils/dayjs'
 export default {
     props: {
         artice: {
@@ -43,10 +44,14 @@ export default {
     computed: {
         label() {
             const { aut_name, comm_count, pubdate } = this.artice
-            return `${aut_name} ${comm_count}评论 ${pubdate}`
+            return `${aut_name} ${comm_count}评论 ${dayjs().to(dayjs(pubdate))}`
         }
     }
 }
 </script>
 
-<style lang="less" scoped></style>
+<style lang="less" scoped>
+:deep(.van-image) {
+    margin-left: 0.2rem;
+}
+</style>

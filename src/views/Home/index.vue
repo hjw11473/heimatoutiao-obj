@@ -16,23 +16,39 @@
                 <!-- 文章详情 -->
                 <ArticleList :id="item.id"></ArticleList>
             </van-tab>
-            <span class="toutiao toutiao-gengduo"></span>
+            <span class="toutiao toutiao-gengduo" @click="isShow = true"></span>
         </van-tabs>
+        <!-- 频道弹出层 -->
+        <van-popup
+            v-model="isShow"
+            position="bottom"
+            :style="{ height: '100%' }"
+            closeable
+            close-icon-position="top-left"
+        >
+            <ChannelEdit
+                @change-active=";[(isShow = false), (active = $event)]"
+                :maychannel="hannel"
+            ></ChannelEdit>
+        </van-popup>
     </div>
 </template>
 
 <script>
 import ArticleList from '@/views/Home/components/ArticleList.vue'
-import { getchannel } from '@/api'
+import ChannelEdit from '@/views/Home/components/ChanneiEditpopup.vue'
+import { getuserchannel } from '@/api'
 export default {
     components: {
-        ArticleList
+        ArticleList,
+        ChannelEdit
     },
     data() {
         return {
             // value: ''
             active: 0,
-            hannel: []
+            hannel: [],
+            isShow: false
         }
     },
     created() {
@@ -41,14 +57,15 @@ export default {
     methods: {
         // 1. ?? ==> 相当于 || ，常用于语句
         // 2. ?. ==> 可选链操作符，？前面是undifined,那么不会往后取值
+        // 获取用户自己的频道
         async getchannelnav() {
             try {
                 const {
                     data: { data }
-                } = await getchannel()
+                } = await getuserchannel()
+                console.log(data)
                 this.hannel = data.channels
             } catch (err) {
-                // if (err.response && err.response.status === 507) {
                 if (err.response && err.response.status === 507) {
                     this.$toast.fail('服务器异常，请刷新')
                 } else {

@@ -102,7 +102,6 @@ export default {
                 this.SET_TOKE(data.data)
                 // 成功后跳转路由
                 this.$router.push('/my')
-                // this.$store.commit('SET_TOKE', {})
                 this.$toast.success('登录成功')
             } catch (err) {
                 if (err.response && err.response.status === 400) {

@@ -23,6 +23,7 @@ module.exports = {
         'eslintno-unused-vars': 'off',
         'eslintno-constant-condition': 'off',
         'eslintvue/multi-word-component-names': 'off',
-        'eslintprefer-const': 'off'
+        'eslintprefer-const': 'off',
+        'expectedless(css-rparentexpected)': 'off'
     }
 }
