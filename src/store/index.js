@@ -9,15 +9,15 @@ export default new Vuex.Store({
         createPersistedState({
             key: 'toutiao',
             storage: window.sessionStorage,
-            reducer({ tokenObj }) {
+            reducer({ tokenObj, mychannles }) {
                 // const { tokenObj } = state
-                return { tokenObj }
+                return { tokenObj, mychannles }
             }
         })
     ],
     state: {
         tokenObj: {},
-        a: 1
+        mychannles: []
         // tokenObj: JSON.parse(window.localStorage.getItem('toutiao')) || {}
     },
     mutations: {
@@ -25,6 +25,14 @@ export default new Vuex.Store({
             state.tokenObj = token
             // console.log(state, token, state.tokenObj)
             // window.localStorage.setItem('toutiao', JSON.stringify(token))
+        },
+
+        /***
+         *@param {Array} channels 删除或者添加后的最新的channles
+         * **/
+        SET_MYCHANNLES(state, channels) {
+            console.log(111111111)
+            state.mychannles = channels
         }
     },
     getters: {

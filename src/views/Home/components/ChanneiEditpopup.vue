@@ -39,6 +39,7 @@
                     :key="item.id"
                     :text="item.name"
                     icon="plus"
+                    @click="$emit('addchannel', item)"
                 >
                 </van-grid-item>
             </van-grid>
@@ -76,9 +77,10 @@ export default {
                 console.log(this.channelsAll)
             } catch (err) {}
         },
-        handlermychannels({ name }, index) {
+        // 点击每一个列表选项删除或者新增
+        handlermychannels({ name, id }, index) {
             if (this.isEitl && name !== '推荐') {
-                console.log(1)
+                this.$emit('delchannel', id)
             } else {
                 this.$emit('change-active', index)
             }

@@ -27,8 +27,11 @@
             close-icon-position="top-left"
         >
             <ChannelEdit
+                v-if="isShow"
                 @change-active=";[(isShow = false), (active = $event)]"
                 :maychannel="hannel"
+                @delchannel="del"
+                @addchannel="add"
             ></ChannelEdit>
         </van-popup>
     </div>
@@ -37,7 +40,8 @@
 <script>
 import ArticleList from '@/views/Home/components/ArticleList.vue'
 import ChannelEdit from '@/views/Home/components/ChanneiEditpopup.vue'
-import { getuserchannel } from '@/api'
+import { getuserchannel, getdelchannelAPT, getaddchannelAPT } from '@/api'
+import { mapGetters, mapMutations } from 'vuex'
 export default {
     components: {
         ArticleList,
@@ -52,9 +56,24 @@ export default {
         }
     },
     created() {
-        this.getchannelnav()
+        this.initchannles()
     },
     methods: {
+        ...mapMutations(['SET_MYCHANNLES']),
+        initchannles() {
+            // 1. 如果你登录了，应该发送请求获取用户自己的频道
+            if (this.isLogin) {
+                this.getchannelnav()
+            } else {
+                // 2. 如果你没有登录,应该读取本地存储的数据
+                const statechannles = this.$store.state.mychannles
+                if (statechannles.length === 0) {
+                    this.getchannelnav()
+                } else {
+                    this.hannel = statechannles
+                }
+            }
+        },
         // 1. ?? ==> 相当于 || ，常用于语句
         // 2. ?. ==> 可选链操作符，？前面是undifined,那么不会往后取值
         // 获取用户自己的频道
@@ -72,7 +91,53 @@ export default {
                     throw err
                 }
             }
+        },
+        // 删除我的频道的选项
+        async del(id) {
+            const newchannles = this.hannel.filter((item) => item.id !== id)
+            try {
+                if (this.isLogin) {
+                    // 发送请求删除频道
+                    await getdelchannelAPT(id)
+                } else {
+                    // 把我的频道存在本地
+                    this.SET_MYCHANNLES(newchannles)
+                }
+                // 视图层删除频道
+                this.hannel = newchannles
+                this.$toast.success('删除频道成功~')
+            } catch (err) {
+                if (err.response && err.response.status === 401) {
+                    this.$toast.fail('请登录在删除')
+                } else {
+                    throw err
+                }
+            }
+        },
+        // 添加我的频道
+        async add(item) {
+            try {
+                if (this.login) {
+                    // 发送请求添加频道
+                    await getaddchannelAPT(item.id, this.hannel.length)
+                } else {
+                    // 把我的频道存在本地
+                    this.SET_MYCHANNLES([...this.hannel, item])
+                }
+                // 视图层添加频道
+                this.hannel.push(item)
+                this.$toast.success('添加频道成功')
+            } catch (err) {
+                if (err.response && err.response.status === 401) {
+                    this.$toast.fail('请登录在添加')
+                } else {
+                    throw err
+                }
+            }
         }
+    },
+    computed: {
+        ...mapGetters(['isLogin'])
     }
 }
 </script>
