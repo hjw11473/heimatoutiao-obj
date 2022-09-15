@@ -3,6 +3,7 @@
 export * from './user'
 export * from './home'
 export * from './News'
+export * from './sreach'
 
 // export const loginAPI = login
 // export const GetcodesAPI = Getcodes

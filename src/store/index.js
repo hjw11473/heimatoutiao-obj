@@ -1,4 +1,4 @@
-import Vue from 'vue'
+import Vue, { h } from 'vue'
 import Vuex from 'vuex'
 import createPersistedState from 'vuex-persistedstate'
 
@@ -9,15 +9,16 @@ export default new Vuex.Store({
         createPersistedState({
             key: 'toutiao',
             storage: window.sessionStorage,
-            reducer({ tokenObj, mychannles }) {
+            reducer({ tokenObj, mychannles, histories }) {
                 // const { tokenObj } = state
-                return { tokenObj, mychannles }
+                return { tokenObj, mychannles, histories }
             }
         })
     ],
     state: {
         tokenObj: {},
-        mychannles: []
+        mychannles: [],
+        histories: []
         // tokenObj: JSON.parse(window.localStorage.getItem('toutiao')) || {}
     },
     mutations: {
@@ -31,8 +32,14 @@ export default new Vuex.Store({
          *@param {Array} channels 删除或者添加后的最新的channles
          * **/
         SET_MYCHANNLES(state, channels) {
-            console.log(111111111)
             state.mychannles = channels
+        },
+
+        /***
+         *@param {*} histories 删除或者添加以后新的搜索历史
+         * **/
+        SET_HISTORIES(state, histories) {
+            state.histories = histories
         }
     },
     getters: {

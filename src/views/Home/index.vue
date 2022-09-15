@@ -4,7 +4,13 @@
         <!-- 搜索按钮 -->
         <van-nav-bar style="background-color: #3296fa">
             <template #title>
-                <van-button type="info" round size="small" color="#5babfb">
+                <van-button
+                    type="info"
+                    round
+                    size="small"
+                    color="#5babfb"
+                    @click="$router.push('/search')"
+                >
                     <van-icon name="search" color="#fff" />
                     <span>搜索</span>
                 </van-button>
