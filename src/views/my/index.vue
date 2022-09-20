@@ -170,7 +170,9 @@ export default {
         //             // on cancel
         //         })
         // },
-        EditMsg() {}
+        EditMsg() {
+            this.$router.push('/User')
+        }
     },
     computed: {
         ...mapGetters(['isLogin'])

@@ -40,3 +40,45 @@ export const GetUsermsg = () => {
         // }
     })
 }
+
+/**
+ *上传图片
+ * @param {*} file 裁剪过后的图片的file对象
+ * @returns
+ */
+// 发送
+export const Uploadphoto = (file) => {
+    // 生成一个新的表单对象
+    const fm = new FormData()
+    fm.append('photo', file)
+
+    return request({
+        url: '/v1_0/user/photo',
+        method: 'PATCH',
+        data: fm
+    })
+}
+
+/**
+ *获取用户登录后的信息
+ * @returns
+ */
+//
+export const Getuserprofile = () => {
+    return request({
+        url: '/v1_0/user/profile'
+    })
+}
+
+/**
+ *修改用户登录后的用户资料
+ * @returns
+ */
+//
+export const Modifyuser = (data) => {
+    return request({
+        url: '/v1_0/user/profile',
+        method: 'PATCH',
+        data
+    })
+}

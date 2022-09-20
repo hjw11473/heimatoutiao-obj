@@ -1,12 +1,25 @@
 import axios from 'axios'
 import store from '@/store'
+// import JSONBig from 'json-bigint'
+
 // axios.defaults.baseURL = 'http://toutiao.itheima.net'
 // axios.defaults.timeout = 5000
 
 // axios.create()  克隆axios
 const requests = axios.create({
     timeout: 5000,
+    // 接口的基准路径
     baseURL: 'http://toutiao.itheima.net'
+    // 自定义后端返回的原始数据
+    // transformRequest: [
+    //     function (data) {
+    //         try {
+    //             return JSONBig.parse(data)
+    //         } catch (error) {
+    //             return data
+    //         }
+    //     }
+    // ]
 })
 // const request2 = axios.create({
 //     timeout: 5000,

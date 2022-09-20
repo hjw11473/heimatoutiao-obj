@@ -16,3 +16,15 @@ export const getarticles = (id, timestamp) => {
         }
     })
 }
+
+/**
+ * @param {string| Number} id 频道的id
+ * @returns
+ */
+
+//  获取新闻详情
+export const getarticlesID = (id) => {
+    return request({
+        url: `/v1_0/articles/${id}`
+    })
+}

@@ -24,6 +24,7 @@ module.exports = {
         'eslintno-constant-condition': 'off',
         'eslintvue/multi-word-component-names': 'off',
         'eslintprefer-const': 'off',
-        'expectedless(css-rparentexpected)': 'off'
+        'expectedless(css-rparentexpected)': 'off',
+        'eslintvue/no-mutating-props': 'off'
     }
 }

@@ -5,11 +5,13 @@
             v-if="artice.cover.type === 0"
             :title="artice.title"
             :label="label"
+            :to="`/articleDetailsPage/${artice.art_id}`"
         />
         <van-cell
             v-else-if="artice.cover.type === 1"
             :title="artice.title"
             :label="label"
+            :to="`/articleDetailsPage/${artice.art_id}`"
         >
             <van-image width="100" height="60" :src="artice.cover.images[0]" />
         </van-cell>
@@ -17,6 +19,7 @@
             v-else-if="artice.cover.type === 3"
             :title="artice.title"
             :label="label"
+            :to="`/articleDetailsPage/${artice.art_id}`"
         >
             <template #label>
                 <van-image

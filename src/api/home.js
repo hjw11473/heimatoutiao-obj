@@ -36,7 +36,6 @@ export const getdelchannelAPT = (id) => {
 }
 
 /**
- *  新增频道
  * @param {Number | string} id 新增频道的id
  * @param {Number } seq 新增频道添加的索引值
  * @returns promise
